@@ -1,0 +1,89 @@
+Task 1:
+#!/bin/bash
+
+if systemctl is-active --quiet ssh;
+ then
+    echo "SSH service is running."
+else
+    echo "SSH service is not running."
+fi
+
+Task 2 :
+ #!/bin/bash
+folder_to_backup="/home/user/task2"
+
+backup_dir="/home/user/shelltask"
+
+backup_filename="$(date +'%Y%m%d_%H%M%S').tar.gz"
+
+backup_path="$backup_dir/$backup_filename"
+
+tar -czvf "$backup_path" "$folder_to_backup"
+
+# Check if backup was successful
+if [ $? -eq 0 ]; then
+    echo "Backup created successfully: $backup_path"
+else
+    echo "Backup failed!"
+fi
+
+Task 3:
+!/bin/bash
+
+output_file="large_files.txt"
+
+find / -type f -size +10M > "$output_file"
+echo "List of files larger than 10MB saved to $output_file"
+
+Task 4:
+#!/bin/bash
+
+echo "shelltask:"
+if [ -e "$name" ]; then
+    echo "$name exists."
+else
+    echo "$name does not exist."
+fi
+~    
+Task 5 :
+#!/bin/bash
+
+output_file="disk_usage.txt"
+
+df -h > "$output_file"
+
+echo "Disk usage information saved to $output_file"
+
+Task 6:
+#!/bin/bash
+
+create_user() {
+    read -p "Enter the username: " username
+
+    if id "$username" &>/dev/null; then
+        echo "User '$username' already exists."
+        exit 1
+    fi
+
+read -sp "Enter the password: " password
+ echo
+
+
+sudo useradd -m "$username"
+
+if [ $? -ne 0 ]; then
+echo "Failed to create user '$username'."
+exit 1
+fi
+echo "$username:$password" | sudo chpasswd
+
+if [ $? -ne 0 ]; then
+echo "Failed to set password for user '$username'."
+exit 1
+fi
+
+echo "User '$username' created successfully."
+}
+
+create_user
+
